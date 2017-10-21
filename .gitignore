@@ -99,3 +99,14 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#VPP
+**/.vpprefdata/
+*.vpp~*
+*.vpppath
+*.vpp.*
+*.vux
+*.vpp.working
+*.vpp.working-journal
+*.lock
+**/tmp/*
