@@ -39,6 +39,11 @@ Aukcja jest reprezentowana przez unikalny numer. Zawiera też informacje o tym
 czy produkt został sprzedany. Na aukcji wystawiona może być maksymalnie jedna
 sztuka towaru.
 
+Administrator może dodatkowo (korzystając ze specjalnego panela
+administracyjnego):
+* moderować oferty (edycja/usuwanie)
+* moderować użytkowników (usuwanie)
+
 ### Dane techniczne
 
 Serwis będzie stroną internetową. Klienci mogą korzystać z serwisu poprzez
