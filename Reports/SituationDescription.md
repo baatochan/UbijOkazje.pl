@@ -45,6 +45,5 @@ Administrator może dodatkowo (korzystając ze specjalnego panela administracyjn
 
 * Serwis będzie stroną internetową. Klienci mogą korzystać z serwisu poprzez przeglądarkę. Jednocześnie strona może być używana przez ~1000 osób.
 * Baza nie będzie przechowywać haseł użytkowników, a jedynie ich hash, co powoduje niemożliwość odzyskania hasła (tylko zmiana na nowe poprzez link wysyłany na maila).
-* Hasło użytkownika musi mieć minimum 8 znaków. Może składać się z dowolnej kombinacji małych i wielkich liter, liczb i znaków specjalnych.
+* Hasło użytkownika musi mieć minimum 8 znaków. Może składać się z dowolnej kombinacji małych i wielkich liter, liczb i znaków specjalnych. Hasła będą posiadały dodatkowy element aka "Salt".
 * Strona będzie działać przez protokół HTTP, strona logowania, edycji konta i panel administracyjny poprzez HTTPS.
-* Hasła będą posiadały dodatkowy element aka "Salt"
