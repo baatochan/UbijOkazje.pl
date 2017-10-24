@@ -35,6 +35,8 @@ Sprzedający dodatkowo może:
 * wystawiać produkty na sprzedaż,
 * Przeglądać historię sprzedanych produktów.
 
+Osoba niezalogowana może jedynie przeglądać dostępne oferty.
+
 Aukcja jest reprezentowana przez unikalny numer. Zawiera też informacje o tym
 czy produkt został sprzedany. Na aukcji wystawiona może być maksymalnie jedna
 sztuka towaru.
@@ -48,3 +50,13 @@ administracyjnego):
 
 Serwis będzie stroną internetową. Klienci mogą korzystać z serwisu poprzez
 przeglądarkę. Jednocześnie strona może być używana przez ~1000 osób.
+
+Baza nie będzie przechowywać haseł użytkowników, a jedynie ich hash, co powoduje
+niemożliwość odzyskania hasła (tylko zmiana na nowe poprzez link wysyłany na
+maila).
+
+Hasło użytkownika musi mieć minimum 8 znaków. Może składać się z dowolnej
+kombinacji małych i wielkich liter, liczb i znaków specjalnych.
+
+Strona będzie działać przez protokół HTTP, strona logowania, edycji konta i
+panel administracyjny poprzez HTTPS.
