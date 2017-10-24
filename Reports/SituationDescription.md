@@ -18,11 +18,9 @@ Klienci dzielą się na dwie grupy:
 * kupujący
 * sprzedający
 
-Kupującym jest każdy klient. Sprzedającym może stać się każdy, jednak musi to
-aktywować w ustawieniach.
+Kupującym jest każdy klient. Sprzedającym może stać się każdy, jednak musi to aktywować w ustawieniach.
 
-Aby stać się klientem trzeba się zarejestrować w systemie. Klient jest
-reprezentowany przez unikalną nazwę użytkownika.
+Aby stać się klientem trzeba się zarejestrować w systemie. Klient jest reprezentowany przez unikalną nazwę użytkownika.
 
 Kupujący może:
 * przeglądać oferty sprzedaży,
@@ -37,26 +35,16 @@ Sprzedający dodatkowo może:
 
 Osoba niezalogowana może jedynie przeglądać dostępne oferty.
 
-Aukcja jest reprezentowana przez unikalny numer. Zawiera też informacje o tym
-czy produkt został sprzedany. Na aukcji wystawiona może być maksymalnie jedna
-sztuka towaru.
+Aukcja jest reprezentowana przez unikalny numer. Zawiera też informacje o tym czy produkt został sprzedany. Na aukcji wystawiona może być maksymalnie jedna sztuka towaru.
 
-Administrator może dodatkowo (korzystając ze specjalnego panela
-administracyjnego):
+Administrator może dodatkowo (korzystając ze specjalnego panela administracyjnego):
 * moderować oferty (edycja/usuwanie)
 * moderować użytkowników (usuwanie)
 
 ### Dane techniczne
 
-Serwis będzie stroną internetową. Klienci mogą korzystać z serwisu poprzez
-przeglądarkę. Jednocześnie strona może być używana przez ~1000 osób.
-
-Baza nie będzie przechowywać haseł użytkowników, a jedynie ich hash, co powoduje
-niemożliwość odzyskania hasła (tylko zmiana na nowe poprzez link wysyłany na
-maila).
-
-Hasło użytkownika musi mieć minimum 8 znaków. Może składać się z dowolnej
-kombinacji małych i wielkich liter, liczb i znaków specjalnych.
-
-Strona będzie działać przez protokół HTTP, strona logowania, edycji konta i
-panel administracyjny poprzez HTTPS.
+* Serwis będzie stroną internetową. Klienci mogą korzystać z serwisu poprzez przeglądarkę. Jednocześnie strona może być używana przez ~1000 osób.
+* Baza nie będzie przechowywać haseł użytkowników, a jedynie ich hash, co powoduje niemożliwość odzyskania hasła (tylko zmiana na nowe poprzez link wysyłany na maila).
+* Hasło użytkownika musi mieć minimum 8 znaków. Może składać się z dowolnej kombinacji małych i wielkich liter, liczb i znaków specjalnych.
+* Strona będzie działać przez protokół HTTP, strona logowania, edycji konta i panel administracyjny poprzez HTTPS.
+* Hasła będą posiadały dodatkowy element aka "Salt"
