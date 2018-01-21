@@ -25,6 +25,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
 <head>
     <meta charset="UTF-8">
     <link href="imports/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
     <title>Zaloguj sie - UbijOkazje.pl</title>
     <script src="imports/jquery-3.1.1.slim.min.js"></script>
@@ -42,8 +43,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
             if ($result_of_login_check = $dbconnection->query($sql)) {
                 if ($result_of_login_check->num_rows == 1) {
                     $result_row = $result_of_login_check->fetch_object();
-                    $password = $_POST['password'];
-                    $password += $result_row->Salt;
+                    $password = $_POST['password'] . $result_row->Salt;
                     $hashedPass = md5($password);
                     if ($result_row->SaltyPassword == $hashedPass) {
                         $_SESSION['username'] = $result_row->Username;
@@ -55,14 +55,14 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
                     ';
                         die();
                     } else {
-                        echo '<p class="errorP">Bledne haslo!</p>';
+                        echo '<p id="error">Bledne haslo!</p>';
                     }
                 } else {
-                    echo '<p class="errorP">Uzytkownik nie istnieje!</p>';
+                    echo '<p id="error">Uzytkownik nie istnieje!</p>';
                 }
             } else {
                 echo '
-                    <p class="errorP">Blad polaczenia z baza!</p>
+                    <p id="error">Blad polaczenia z baza!</p>
                 ';
                 /*echo "Query: " . $sql . "\n";
                 echo "Errno: " . $dbconnection->errno . "\n";
@@ -70,7 +70,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
             }
         } else {
             echo '
-                <p class="errorP">Blad polaczenia z baza!</p>
+                <p id="error">Blad polaczenia z baza!</p>
             ';
             /*echo "Query: " . $sql . "\n";
             echo "Errno: " . $dbconnection->errno . "\n";

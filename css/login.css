@@ -1,7 +1,6 @@
-body {
-    width: 1200px;
-    margin: 0 auto;
-    position: relative;
+#error {
+    text-align: center;
+    color: orangered;
 }
 
 #loginDiv {
@@ -18,9 +17,4 @@ label {
 #loginButton {
     float: right;
     margin-right: 5px;
-}
-
-.errorP {
-    text-align: center;
-    color: orangered;
 }

@@ -1,0 +1,27 @@
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#error {
+    text-align: center;
+    color: orangered;
+}
+
+#registerDiv {
+    padding-top: 50px;
+    width: 320px;
+    margin: 0 auto;
+
+}
+
+label {
+    margin-right: 10px;
+    text-align: right;
+    width: 110px;
+}
+
+#registerButton {
+    float: right;
+    margin-right: 5px;
+}
