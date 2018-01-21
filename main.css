@@ -1,4 +1,34 @@
 body {
     width: 1200px;
     margin: 0 auto;
+    position: relative;
+}
+
+#logLink {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    display: block;
+}
+
+#userLinks {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+#searchDiv {
+    padding-top: 300px;
+    padding-left: 300px;
+    padding-right: 300px;
+}
+
+#searchBar {
+    width: 530px;
+    float: left;
+}
+
+#searchButton {
+    float: right;
 }
