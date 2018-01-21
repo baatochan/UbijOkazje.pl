@@ -11,8 +11,14 @@
     <script src="js/index.js"></script>
 </head>
 <body>
-<div id="logLink"><a href="login.php">Zaloguj sie</a></div>
-<div id="userLinks"><a href="user.php">Moje konto</a></div>
+<div id="logLink">
+    <p><a href="login.php">Zaloguj sie</a></p>
+    <p><a href="register.php">Zarejestruj sie</a></p>
+</div>
+<div id="userLinks">
+    <p><a href="user.php">Moje konto</a></p>
+    <p><a href="logout.php">Wyloguj sie</a></p>
+</div>
 <div id="searchDiv">
     <form>
         <input id="searchBar" type="text">
