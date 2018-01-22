@@ -37,7 +37,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
     <div style="float: left"><a href="index.php"><img src="img/logo.png" alt="logo" id="logoHeader"></a></div>
     <div style="float: right; padding-top: 50px">
         <form method="get" action="search.php">
-            <input name="query" id="searchBarHeader" type="text">
+            <input name="query" id="searchBarHeader" type="text" style="width: 500px;">
             <button id="searchButtonHeader">Szukaj</button>
         </form>
     </div>
@@ -61,6 +61,8 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
         isset($_POST['street']) && isset($_POST['number']) && isset($_POST['code']) && isset($_POST['city']) && isset($_POST['country'])) {
         include('db-connection.php');
         if (!$dbconnection->connect_errno) {
+            // TODO: Dodac zbieranie maila i numeru
+            // TODO: dodac potwierdzenie rejestracji mailem
             $username = $dbconnection->real_escape_string($_POST['username']);
             $password = $dbconnection->real_escape_string($_POST['password']);
             $password2 = $dbconnection->real_escape_string($_POST['password2']);
@@ -107,9 +109,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
                                 </script>
                             ';
                         } else {
-                            echo '
-                                <p id="error">Blad polaczenia z baza!</p>
-                            ';
+                            echo '<p id="error">Blad polaczenia z baza!</p>';
                             /*echo "Query: " . $sql . "\n";
                             echo "Errno: " . $dbconnection->errno . "\n";
                             echo "Error: " . $dbconnection->error . "\n";*/
@@ -121,17 +121,13 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
                     echo '<p id="error">Uzytkownik o takiej nazwie juz istnieje!</p>';
                 }
             } else {
-                echo '
-                    <p id="error">Blad polaczenia z baza!</p>
-                ';
+                echo '<p id="error">Blad polaczenia z baza!</p>';
                 /*echo "Query: " . $sql . "\n";
                 echo "Errno: " . $dbconnection->errno . "\n";
                 echo "Error: " . $dbconnection->error . "\n";*/
             }
         } else {
-            echo '
-                <p id="error">Blad polaczenia z baza!</p>
-            ';
+            echo '<p id="error">Blad polaczenia z baza!</p>';
             /*echo "Query: " . $sql . "\n";
             echo "Errno: " . $dbconnection->errno . "\n";
             echo "Error: " . $dbconnection->error . "\n";*/

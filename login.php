@@ -37,7 +37,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
     <div style="float: left"><a href="index.php"><img src="img/logo.png" alt="logo" id="logoHeader"></a></div>
     <div style="float: right; padding-top: 50px">
         <form method="get" action="search.php">
-            <input name="query" id="searchBarHeader" type="text">
+            <input name="query" id="searchBarHeader" type="text" style="width: 500px;">
             <button id="searchButtonHeader">Szukaj</button>
         </form>
     </div>
@@ -72,17 +72,13 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
                     echo '<p id="error">Uzytkownik nie istnieje!</p>';
                 }
             } else {
-                echo '
-                    <p id="error">Blad polaczenia z baza!</p>
-                ';
+                echo '<p id="error">Blad polaczenia z baza!</p>';
                 /*echo "Query: " . $sql . "\n";
                 echo "Errno: " . $dbconnection->errno . "\n";
                 echo "Error: " . $dbconnection->error . "\n";*/
             }
         } else {
-            echo '
-                <p id="error">Blad polaczenia z baza!</p>
-            ';
+            echo '<p id="error">Blad polaczenia z baza!</p>';
             /*echo "Query: " . $sql . "\n";
             echo "Errno: " . $dbconnection->errno . "\n";
             echo "Error: " . $dbconnection->error . "\n";*/
