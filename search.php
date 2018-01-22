@@ -32,9 +32,23 @@ if (!isset($_GET['query'])) {
 <body>
 <div id="searchHeader">
 	<div style="float: left"><a href="index.php"><img src="img/logo.png" alt="logo" id="logoHeader"></a></div>
-	<div id="userLinks" style="float: right; margin-left: 20px; margin-top: 50px;">
-		<p><a href="logout.php">Wyloguj sie</a></p>
-	</div>
+    <?php
+        if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1) {
+        echo '
+        <div id="userLinks" style="float: right; margin-left: 20px; margin-top: 35px;">
+            <p><a href="user.php">Moje konto</a></p>
+            <p><a href="logout.php">Wyloguj sie</a></p>
+        </div>
+        ';
+        } else {
+        echo '
+        <div id="logLink" style="float: right; margin-left: 20px; margin-top: 35px;">
+            <p><a href="login.php">Zaloguj sie</a></p>
+            <p><a href="register.php">Zarejestruj sie</a></p>
+        </div>
+        ';
+        }
+    ?>
 	<div style="float: right; padding-top: 50px">
 		<form method="get" action="search.php">
 			<input name="query" id="searchBarHeader" type="text" value="<?php echo $_GET['query'] ?>">

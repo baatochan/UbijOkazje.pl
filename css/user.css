@@ -14,3 +14,28 @@ th {
 table {
 	margin: 40px auto;
 }
+
+.boughtProductPhoto {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.boughtProductName {
+    padding: 10px;
+    border-right: none;
+    width: 400px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.boughtProductPrice {
+    padding: 10px;
+    border-left: none;
+    width: 70px;
+    text-align: right;
+}
+
+.boughtProductSellerDetails {
+    padding: 10px;
+    width: 250px;
+}
