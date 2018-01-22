@@ -46,6 +46,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
 
 ?>
 <div id="searchDiv">
+    <img src="img/logo.png" alt="logo" id="logoBig">
     <form>
         <input id="searchBar" type="text">
         <button id="searchButton">Szukaj</button>

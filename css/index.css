@@ -3,6 +3,7 @@
     top: 5px;
     right: 0;
     display: block;
+    text-align: right;
 }
 
 #userLinks {
@@ -11,8 +12,12 @@
     right: 0;
 }
 
+#logoBig {
+    width: 600px;
+}
+
 #searchDiv {
-    padding-top: 300px;
+    padding-top: 30px;
     padding-left: 300px;
     padding-right: 300px;
 }
