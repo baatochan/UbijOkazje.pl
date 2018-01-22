@@ -33,6 +33,16 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
     <script src="imports/bootstrap.min.js"></script>
 </head>
 <body>
+<div id="searchHeader">
+    <div style="float: left"><a href="index.php"><img src="img/logo.png" alt="logo" id="logoHeader"></a></div>
+    <div style="float: right; padding-top: 50px">
+        <form method="get" action="search.php">
+            <input name="query" id="searchBarHeader" type="text">
+            <button id="searchButtonHeader">Szukaj</button>
+        </form>
+    </div>
+    <div style="clear: both;"></div>
+</div>
 <div id="registerDiv">
     <h1>Rejestracja</h1>
     <?php

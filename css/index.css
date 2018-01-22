@@ -18,12 +18,12 @@
 
 #searchDiv {
     padding-top: 30px;
-    padding-left: 300px;
-    padding-right: 300px;
+    margin: 0 auto;
+    width: 600px;
 }
 
 #searchBar {
-    width: 530px;
+    width: 525px;
     float: left;
 }
 

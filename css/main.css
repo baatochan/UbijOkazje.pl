@@ -1,9 +1,21 @@
 body {
-    width: 1200px;
+    width: 1000px;
     margin: 0 auto;
     position: relative;
 }
 
 p {
     margin: 0;
+}
+
+#logoHeader {
+    width: 200px;
+}
+
+#searchHeader {
+    padding: 0 100px;
+}
+
+#searchBarHeader {
+    width: 500px;
 }
