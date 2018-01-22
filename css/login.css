@@ -1,21 +1,21 @@
 #error {
-    text-align: center;
-    color: orangered;
-    margin-bottom: 10px;
+	text-align: center;
+	color: orangered;
+	margin-bottom: 10px;
 }
 
 #loginDiv {
-    padding-top: 100px;
-    width: 252px;
-    margin: 0 auto;
+	padding-top: 100px;
+	width: 252px;
+	margin: 0 auto;
 
 }
 
 label {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 #loginButton {
-    float: right;
-    margin-right: 5px;
+	float: right;
+	margin-right: 5px;
 }

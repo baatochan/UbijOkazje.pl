@@ -1,23 +1,23 @@
 #error {
-    text-align: center;
-    color: orangered;
-    margin-bottom: 10px;
+	text-align: center;
+	color: orangered;
+	margin-bottom: 10px;
 }
 
 #registerDiv {
-    padding-top: 30px;
-    width: 320px;
-    margin: 0 auto;
+	padding-top: 30px;
+	width: 320px;
+	margin: 0 auto;
 
 }
 
 label {
-    margin-right: 10px;
-    text-align: right;
-    width: 110px;
+	margin-right: 10px;
+	text-align: right;
+	width: 110px;
 }
 
 #registerButton {
-    float: right;
-    margin-right: 5px;
+	float: right;
+	margin-right: 5px;
 }

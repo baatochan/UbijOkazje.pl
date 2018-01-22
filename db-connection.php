@@ -14,5 +14,5 @@ const dbpass = 'toor';
 $dbconnection = new mysqli(dbhost, dbusername, dbpass, dbname);
 
 if (!$dbconnection->set_charset("utf8")) {
-    echo '<p>'.$dbconnection->error.'</p>';
+	echo '<p>'.$dbconnection->error.'</p>';
 }
