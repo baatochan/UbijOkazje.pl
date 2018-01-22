@@ -16,7 +16,17 @@ session_start();
     <script src="js/index.js"></script>
 </head>
 <body>
+
+
 <?php
+
+if (isset($_GET['login'])) {
+    echo '<p id="infoP">Zalogowano.</p>';
+} elseif (isset($_GET['logout'])) {
+    echo '<p id="infoP">Wylogowano.</p>';
+} elseif (isset($_GET['registered'])) {
+    echo '<p id="infoP">Zarejestrowano. Mozesz sie juz zalogowac.</p>';
+}
 
 if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1) {
     echo '
