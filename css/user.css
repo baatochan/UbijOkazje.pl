@@ -7,10 +7,6 @@ td {
 	padding: 0 5px;
 }
 
-table, td, th, tr {
-	border: 1px solid black;
-}
-
 th {
 	text-align: center;
 }

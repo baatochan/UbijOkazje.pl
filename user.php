@@ -25,7 +25,7 @@ if (!isset($_SESSION['username'])) {
 	<link href="imports/bootstrap.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/user.css" rel="stylesheet">
-	<title>Zarejestruj sie - UbijOkazje.pl</title>
+	<title>Twoje konto - UbijOkazje.pl</title>
 	<script src="imports/jquery-3.1.1.slim.min.js"></script>
 	<script src="imports/tether.min.js"></script>
 	<script src="imports/bootstrap.min.js"></script>

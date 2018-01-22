@@ -109,7 +109,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
 								</script>
 							';
 						} else {
-							echo '<p id="error">Blad polaczenia z baza!</p>';
+							echo '<p class="error">Blad polaczenia z baza!</p>';
 							/*echo "Query: " . $sql . "\n";
 							echo "Errno: " . $dbconnection->errno . "\n";
 							echo "Error: " . $dbconnection->error . "\n";*/

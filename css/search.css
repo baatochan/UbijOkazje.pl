@@ -1,0 +1,23 @@
+.productPhoto {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.productName {
+    padding: 10px;
+    border-right: none;
+    width: 827px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.productPrice {
+    padding: 10px;
+    border-left: none;
+    width: 70px;
+    text-align: right;
+}
+
+table {
+    margin-top: 40px;
+}
