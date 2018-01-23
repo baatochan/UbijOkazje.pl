@@ -1,0 +1,16 @@
+#registerDiv {
+    width: 600px;
+}
+
+label {
+    width: 150px;
+}
+
+input {
+    width: 430px;
+}
+
+textarea {
+    width: 430px;
+    height: 250px;
+}

@@ -134,7 +134,7 @@ if (!$dbconnection->connect_errno) {
 	</tr>
 <?php
 if (!$dbconnection->connect_errno) {
-	$sql1 = "SELECT p.Value as Value, p.Name as Name, p.Id AS ProductId, p.Photo AS Photo, op.Id as OrderId FROM `product` p LEFT JOIN `orderedproduct` op on op.ProductId = p.Id JOIN `user` u on p.sellerId=u.Id where u.username='$username';";
+	$sql1 = "SELECT p.Date as Date, p.Value as Value, p.Name as Name, p.Id AS ProductId, p.Photo AS Photo, op.Id as OrderId FROM `product` p LEFT JOIN `orderedproduct` op on op.ProductId = p.Id JOIN `user` u on p.sellerId=u.Id where u.username='$username';";
 	if ($result = $dbconnection->query($sql1)) {
 		if ($result->num_rows == 0) {
 			echo "<tr><td colspan='4'>Nie wystawiles jeszcze zadnego produktu.</td></tr>";
@@ -150,6 +150,7 @@ if (!$dbconnection->connect_errno) {
 			echo "<td class='boughtProductName'><a href='item.php?id=" . $row['ProductId'] . "'>" . $row['Name'] . "</a></td>";
 			echo "<td class='boughtProductPrice'>" . $row['Value'] . "zl</td>";
 			echo "<td class='boughtProductSellerDetails'>";// . $row['Value'] . "zl
+			    echo "<p>Wystawiono dnia: ".$row['Date']."</p>";
 				if ($row['OrderId'] == null) {
 					echo "<p>Sprzedany: nie</p>";
 				} else {
