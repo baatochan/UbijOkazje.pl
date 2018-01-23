@@ -94,7 +94,7 @@ if (!$dbconnection->connect_errno) {
 	</tr>
 <?php
 if (!$dbconnection->connect_errno) {
-	$sql1 = "SELECT op.Id AS OrderId, op.dateOfOrder AS dateOfOrder, op.isPaid AS isPaid, s.username AS sellerUsername, s.Email as Email, p.Value as Value, p.Name as Name, p.Id AS ProductId, p.Photo AS Photo FROM `orderedproduct` op JOIN `user` u on op.UserId=u.Id JOIN `product` p on p.Id=op.ProductId JOIN `user` s on p.SellerId=s.Id WHERE u.username = '$username';";
+	$sql1 = "SELECT op.Id AS OrderId, op.dateOfOrder AS dateOfOrder, op.isPaid AS isPaid, s.Id as SellerId, s.username AS sellerUsername, s.Email as Email, p.Value as Value, p.Name as Name, p.Id AS ProductId, p.Photo AS Photo FROM `orderedproduct` op JOIN `user` u on op.UserId=u.Id JOIN `product` p on p.Id=op.ProductId JOIN `user` s on p.SellerId=s.Id WHERE u.username = '$username';";
 	if ($result = $dbconnection->query($sql1)) {
 		if ($result->num_rows == 0) {
 			echo "<tr><td colspan='4'>Nie kupies jeszcze zadnego produktu.</td></tr>";
@@ -120,6 +120,7 @@ if (!$dbconnection->connect_errno) {
 					echo "<p><a href='pay.php?id=".$row['OrderId']."'>Oplac teraz.</a></p>";
 				}
 			echo "<p>Mail sprzedajacego: <a href='mailto:" . $row['Email'] . "'>" . $row['Email'] . "</a></p>";
+			echo "<p><a href='addComment.php?id=" . $row['SellerId'] . "'>Wystaw komentarz</a></p>";
 			echo "</td>";
 			echo "</tr>";
 		}
@@ -173,7 +174,7 @@ if (!$dbconnection->connect_errno) {
 		<th colspan="5">Przedmioty wystawione na sprzedaz</th>
 	</tr>
 	<tr>
-        <td colspan="5" style="text-align: center"><a href="sell.php">Wystaw nowy</a></td>
+        <td colspan="5" style="text-align: center; padding: 10px;"><a href="sell.php">Wystaw nowy</a></td>
 	</tr>
 <?php
 if (!$dbconnection->connect_errno) {
@@ -234,6 +235,26 @@ if (!$dbconnection->connect_errno) {
 	}
 }
 ?>
+</table>
+
+<table>
+    <tr><th>Otrzymane komentarze</th></tr>
+	<?php
+	if (!$dbconnection->connect_errno) {
+		$sql4 = "SELECT * FROM `comment` c JOIN `user` u on u.Id=c.AuthorId WHERE c.UserId = '$sellerId';";
+		if ($result = $dbconnection->query($sql4)) {
+			if ($result->num_rows == 0) {
+				echo "<tr><td class='comment'><p>Nie otrzymales jeszcze zadnych komentarzy.</p></td></tr>";
+			}
+			while($row = $result->fetch_assoc()) {
+				echo "<tr><td class='comment'>";
+				echo "<p>".$row['Text']."</p>";
+				echo "<p style='font-size: 14px;'>Wystawiono przez ".$row['Username'].", dnia ".$row['Date']."</p>";
+				echo "</td></tr>";
+			}
+		}
+	}
+	?>
 </table>
 
 

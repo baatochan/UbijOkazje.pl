@@ -40,6 +40,10 @@ table {
     width: 250px;
 }
 
+.comment {
+    padding: 10px;
+}
+
 .buyerInfo {
     padding: 10px;
     width: 200px;

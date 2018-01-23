@@ -20,7 +20,7 @@ if (!isset($_GET['id'])) {
 include('db-connection.php');
 $productId = $_GET['id'];
 if (!$dbconnection->connect_errno) {
-	$sql1 = "SELECT p.Date as Date, p.Value as Value, p.Name as Name, p.Id AS ProductId, p.Rating as Rating, p.Description as Description, p.Photo AS Photo, op.Id as OrderId, u.Username AS Username FROM `product` p LEFT JOIN `orderedproduct` op on op.ProductId = p.Id JOIN `user` u on p.sellerId=u.Id  WHERE p.Id = '$productId';";
+	$sql1 = "SELECT p.Date as Date, p.Value as Value, p.Name as Name, p.Id AS ProductId, u.Id as SellerId, p.Rating as Rating, p.Description as Description, p.Photo AS Photo, op.Id as OrderId, u.Username AS Username FROM `product` p LEFT JOIN `orderedproduct` op on op.ProductId = p.Id JOIN `user` u on p.sellerId=u.Id  WHERE p.Id = '$productId';";
 	if ($result = $dbconnection->query($sql1)) {
 		$row = $result->fetch_assoc();
 		if ($row['Photo'] != null) {
@@ -28,6 +28,7 @@ if (!$dbconnection->connect_errno) {
 		} else {
 			$photo = "img/defaultProductImg.png";
 		}
+		$sellerId = $row['SellerId'];
 	}
 }
 ?>
@@ -101,4 +102,21 @@ if (!$dbconnection->connect_errno) {
             <p>Data wystawienia: <?php echo $row['Date'] ?></p>
         </td>
     </tr>
+    <tr><th colspan="3">Otrzymane komentarze</th></tr>
+    <?php
+	if (!$dbconnection->connect_errno) {
+		$sql4 = "SELECT * FROM `comment` c JOIN `user` u on u.Id=c.AuthorId WHERE c.UserId = '$sellerId';";
+		if ($result = $dbconnection->query($sql4)) {
+			if ($result->num_rows == 0) {
+				echo "<tr><td colspan='3' class='comment'><p>Uzytkownik nie otrzymal jeszcze zadnych komentarzy.</p></td></tr>";
+			}
+			while($row = $result->fetch_assoc()) {
+				echo "<tr><td colspan='3' class='comment'>";
+                    echo "<p>".$row['Text']."</p>";
+				    echo "<p style='font-size: 14px;'>Wystawiono przez ".$row['Username'].", dnia ".$row['Date']."</p>";
+				echo "</td></tr>";
+			}
+		}
+	}
+    ?>
 </table>
