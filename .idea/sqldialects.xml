@@ -2,8 +2,11 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/addToDesired.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/item.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/pay.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/search.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sell.php" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/user.php" dialect="MySQL" />
+    <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>
