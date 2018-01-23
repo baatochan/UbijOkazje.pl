@@ -194,7 +194,7 @@ if (!$dbconnection->connect_errno) {
 				if ($row['OrderId'] == null) {
 					echo "<p>Sprzedany: nie</p>";
 				} else {
-					$sql2 = "SELECT  op.dateOfOrder as dateOfOrder, op.isPaid as isPaid, u.username as username from `orderedproduct` op JOIN `user` u on u.Id = op.userId where op.Id = '1';";
+					$sql2 = "SELECT  op.dateOfOrder as dateOfOrder, op.isPaid as isPaid, u.username as username from `orderedproduct` op JOIN `user` u on u.Id = op.userId where op.Id = '".$row['OrderId']."';";
 					if ($result2 = $dbconnection->query($sql2)) {
 						$row2 = $result2->fetch_assoc();
 						echo "<p>Sprzedany: tak</p>";

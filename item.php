@@ -20,7 +20,7 @@ if (!isset($_GET['id'])) {
 include('db-connection.php');
 $productId = $_GET['id'];
 if (!$dbconnection->connect_errno) {
-	$sql1 = "SELECT p.Date as Date, p.Value as Value, p.Name as Name, p.Id AS ProductId, p.Description as Description, p.Photo AS Photo, op.Id as OrderId, u.Username AS Username FROM `product` p LEFT JOIN `orderedproduct` op on op.ProductId = p.Id JOIN `user` u on p.sellerId=u.Id  WHERE p.Id = '$productId';";
+	$sql1 = "SELECT p.Date as Date, p.Value as Value, p.Name as Name, p.Id AS ProductId, p.Rating as Rating, p.Description as Description, p.Photo AS Photo, op.Id as OrderId, u.Username AS Username FROM `product` p LEFT JOIN `orderedproduct` op on op.ProductId = p.Id JOIN `user` u on p.sellerId=u.Id  WHERE p.Id = '$productId';";
 	if ($result = $dbconnection->query($sql1)) {
 		$row = $result->fetch_assoc();
 		if ($row['Photo'] != null) {
@@ -79,10 +79,12 @@ if (!$dbconnection->connect_errno) {
         <td id="buyLink">
             <?php
             if ($row['OrderId'] == null) {
+                echo '<p>Stan: '.$row['Rating'].'</p>';
                 echo '<p>Cena: '.$row['Value'].'zl</p>';
                 echo '<p><a href="buy.php?id='.$row['ProductId'].'">Kup teraz</a></p>';
+                echo '<p><a href="addToDesired.php?id='.$row['ProductId'].'">Dodaj do obserwowanych</a></p>';
             } else {
-				$sql2 = "SELECT  op.dateOfOrder as dateOfOrder, op.isPaid as isPaid, u.username as username from `orderedproduct` op JOIN `user` u on u.Id = op.userId where op.Id = '1';";
+				$sql2 = "SELECT  op.dateOfOrder as dateOfOrder, op.isPaid as isPaid, u.username as username from `orderedproduct` op JOIN `user` u on u.Id = op.userId where op.Id = '".$row['OrderId']."';";
 				if ($result2 = $dbconnection->query($sql2)) {
 					$row2 = $result2->fetch_assoc();
 					echo "<p style='font-weight: bold'>Sprzedany: tak</p>";
