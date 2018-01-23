@@ -116,7 +116,7 @@ if (!$dbconnection->connect_errno) {
 					echo 'tak</p>';
 				} else {
 					echo 'nie</p>';
-					echo "<p><a href='pay.php?orderId='".$row['OrderId']."'>Oplac teraz.</a></p>";
+					echo "<p><a href='pay.php?id=".$row['OrderId']."'>Oplac teraz.</a></p>";
 				}
 			echo "</td>";
 			echo "</tr>";
