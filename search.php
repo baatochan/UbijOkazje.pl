@@ -74,7 +74,7 @@ if (!$dbconnection->connect_errno) {
 				$photo = "img/defaultProductImg.png";
 			}
 			echo "<td><a href='item.php?id=".$row['Id']."'><img class='productPhoto' src='".$photo."'></a></td>";
-			echo "<td class='productName'><a href='item.php?id=".$row['Id']."'>".$row['Name']."</a></td>";
+			echo "<td class='productName'><p><a href='item.php?id=".$row['Id']."'>".$row['Name']."</a></p><p style='font-size: 10px'><a href='addToDesired.php?id=".$row['Id']."&query=".$_GET['query']."'>Dodaj do obserowanych</a></p></td>";
 			echo "<td class='productPrice'>".$row['Value']."zl</td>";
 			echo "</tr>";
 		}

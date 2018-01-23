@@ -127,6 +127,46 @@ if (!$dbconnection->connect_errno) {
 </table>
 <table>
 	<tr>
+		<th colspan="4">Obserwowane przedmioty</th>
+	</tr>
+<?php
+if (!$dbconnection->connect_errno) {
+    $sql1 = "SELECT Id FROM `user` WHERE Username = '$username';";
+    if ($result = $dbconnection->query($sql1)) {
+		$row = $result->fetch_assoc();
+		$sellerId = $row['Id'];
+	}
+	$sql1 = "SELECT dp.Id AS DesiredId, p.Id AS Id, p.Name as Name, p.Photo as Photo, p.Value as Value, op.Id as OrderId FROM `desiredproduct` dp JOIN `product` p on dp.productId=p.Id LEFT JOIN `orderedproduct` op on op.productId=p.Id WHERE dp.UserId = '$sellerId' AND dp.isHidden = false;";
+	if ($result = $dbconnection->query($sql1)) {
+		if ($result->num_rows == 0) {
+			echo "<tr><td colspan='4'>Nie obserwujesz zadnego przedmiotu.</td></tr>";
+		}
+		while ($row = $result->fetch_assoc()) {
+			echo "<tr>";
+			if ($row['Photo'] != null) {
+				$photo = $row['Photo'];
+			} else {
+				$photo = "img/defaultProductImg.png";
+			}
+			echo "<td><a href='item.php?id=" . $row['Id'] . "'><img class='boughtProductPhoto' src='" . $photo . "'></a></td>";
+			echo "<td class='boughtProductName'><a href='item.php?id=" . $row['Id'] . "'>" . $row['Name'] . "</a></td>";
+			echo "<td class='boughtProductPrice'>" . $row['Value'] . "zl</td>";
+			echo "<td class='boughtProductSellerDetails'>";// . $row['Value'] . "zl
+			if ($row['OrderId'] == null) {
+				echo "<p>Sprzedany: nie</p>";
+			} else {
+				echo "<p>Sprzedany: tak</p>";
+			}
+			echo "<p><a href='hideFromDesired.php?id=".$row['DesiredId']."'>Usun z obserwowanych</a></p>";
+			echo "</td>";
+			echo "</tr>";
+		}
+	}
+}
+?>
+</table>
+<table>
+	<tr>
 		<th colspan="4">Przedmioty wystawione na sprzedaz</th>
 	</tr>
 	<tr>
