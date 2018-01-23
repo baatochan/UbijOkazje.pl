@@ -53,6 +53,7 @@ if (!$dbconnection->connect_errno) {
 	if ($result = $dbconnection->query($sql1)) {
 		$result_row = $result->fetch_object();
 		$firstName = $result_row->FirstName;
+		$mail = $result_row->Email;
 		$lastName = $result_row->LastName;
 		$street = $result_row->Street;
 		$number = $result_row->Number;
@@ -81,8 +82,8 @@ if (!$dbconnection->connect_errno) {
 		<td><?php echo $code . " " . $city ?></td>
 	</tr>
 	<tr>
-		<td class="tdLeft"></td>
-		<td></td>
+		<td class="tdLeft">Email:</td>
+		<td><?php echo $mail ?></td>
 		<td class="tdLeft">Kraj:</td>
 		<td><?php echo $country ?></td>
 	</tr>
@@ -93,7 +94,7 @@ if (!$dbconnection->connect_errno) {
 	</tr>
 <?php
 if (!$dbconnection->connect_errno) {
-	$sql1 = "SELECT op.Id AS OrderId, op.dateOfOrder AS dateOfOrder, op.isPaid AS isPaid, s.username AS sellerUsername, p.Value as Value, p.Name as Name, p.Id AS ProductId, p.Photo AS Photo FROM `orderedproduct` op JOIN `user` u on op.UserId=u.Id JOIN `product` p on p.Id=op.ProductId JOIN `user` s on p.SellerId=s.Id WHERE u.username = '$username';";
+	$sql1 = "SELECT op.Id AS OrderId, op.dateOfOrder AS dateOfOrder, op.isPaid AS isPaid, s.username AS sellerUsername, s.Email as Email, p.Value as Value, p.Name as Name, p.Id AS ProductId, p.Photo AS Photo FROM `orderedproduct` op JOIN `user` u on op.UserId=u.Id JOIN `product` p on p.Id=op.ProductId JOIN `user` s on p.SellerId=s.Id WHERE u.username = '$username';";
 	if ($result = $dbconnection->query($sql1)) {
 		if ($result->num_rows == 0) {
 			echo "<tr><td colspan='4'>Nie kupies jeszcze zadnego produktu.</td></tr>";
@@ -118,6 +119,7 @@ if (!$dbconnection->connect_errno) {
 					echo 'nie</p>';
 					echo "<p><a href='pay.php?id=".$row['OrderId']."'>Oplac teraz.</a></p>";
 				}
+			echo "<p>Mail sprzedajacego: <a href='mailto:" . $row['Email'] . "'>" . $row['Email'] . "</a></p>";
 			echo "</td>";
 			echo "</tr>";
 		}
@@ -143,6 +145,7 @@ if (!$dbconnection->connect_errno) {
 		}
 		while ($row = $result->fetch_assoc()) {
 			echo "<tr>";
+
 			if ($row['Photo'] != null) {
 				$photo = $row['Photo'];
 			} else {
@@ -151,7 +154,7 @@ if (!$dbconnection->connect_errno) {
 			echo "<td><a href='item.php?id=" . $row['Id'] . "'><img class='boughtProductPhoto' src='" . $photo . "'></a></td>";
 			echo "<td class='boughtProductName'><a href='item.php?id=" . $row['Id'] . "'>" . $row['Name'] . "</a></td>";
 			echo "<td class='boughtProductPrice'>" . $row['Value'] . "zl</td>";
-			echo "<td class='boughtProductSellerDetails'>";// . $row['Value'] . "zl
+			echo "<td class='boughtProductSellerDetails'>";
 			if ($row['OrderId'] == null) {
 				echo "<p>Sprzedany: nie</p>";
 			} else {
@@ -167,10 +170,10 @@ if (!$dbconnection->connect_errno) {
 </table>
 <table>
 	<tr>
-		<th colspan="4">Przedmioty wystawione na sprzedaz</th>
+		<th colspan="5">Przedmioty wystawione na sprzedaz</th>
 	</tr>
 	<tr>
-        <td colspan="4" style="text-align: center"><a href="sell.php">Wystaw nowy</a></td>
+        <td colspan="5" style="text-align: center"><a href="sell.php">Wystaw nowy</a></td>
 	</tr>
 <?php
 if (!$dbconnection->connect_errno) {
@@ -189,12 +192,17 @@ if (!$dbconnection->connect_errno) {
 			echo "<td><a href='item.php?id=" . $row['ProductId'] . "'><img class='boughtProductPhoto' src='" . $photo . "'></a></td>";
 			echo "<td class='boughtProductName'><a href='item.php?id=" . $row['ProductId'] . "'>" . $row['Name'] . "</a></td>";
 			echo "<td class='boughtProductPrice'>" . $row['Value'] . "zl</td>";
-			echo "<td class='boughtProductSellerDetails'>";// . $row['Value'] . "zl
+			if ($row['OrderId'] == null) {
+				echo "<td class='boughtProductSellerDetails' colspan='2'>";
+			} else {
+				echo "<td class='boughtProductSellerDetails'>";
+            }
 			    echo "<p>Wystawiono dnia: ".$row['Date']."</p>";
 				if ($row['OrderId'] == null) {
 					echo "<p>Sprzedany: nie</p>";
+					echo "</td>";
 				} else {
-					$sql2 = "SELECT  op.dateOfOrder as dateOfOrder, op.isPaid as isPaid, u.username as username from `orderedproduct` op JOIN `user` u on u.Id = op.userId where op.Id = '".$row['OrderId']."';";
+					$sql2 = "SELECT  op.dateOfOrder as dateOfOrder, op.isPaid as isPaid, u.username as username, u.FirstName as FirstName, u.Email as Email, u.LastName as LastName, u.AddressId as AddressId from `orderedproduct` op JOIN `user` u on u.Id = op.userId where op.Id = '".$row['OrderId']."';";
 					if ($result2 = $dbconnection->query($sql2)) {
 						$row2 = $result2->fetch_assoc();
 						echo "<p>Sprzedany: tak</p>";
@@ -206,18 +214,21 @@ if (!$dbconnection->connect_errno) {
 						} else {
 							echo 'nie</p>';
 						}
+						echo "</td><td class='buyerInfo'>";
+						echo "<p style='font-weight: bold'>Dane kupujacego:</p>";
+						echo "<p>Imie i nazwisko: ".$row2['FirstName']." ".$row2['LastName']."</p>";
+						echo "<p>Mail: <a href='mailto:" . $row2['Email'] . "'>" . $row2['Email'] . "</a></p>";
+						echo "<p style='font-weight: bold'>Adres: </p>";
+						$sql3 = "SELECT * from `address` where Id = '".$row2['AddressId']."';";
+						if ($result3 = $dbconnection->query($sql3)) {
+							$row3 = $result3->fetch_assoc();
+							echo "<p>".$row3['Street']." ".$row3['Number']."</p>";
+							echo "<p>".$row3['Code']." ".$row3['City']."</p>";
+							echo "<p>".$row3['Country']."</p>";
+						}
+						echo "</td>";
 					}
 				}
-				/*echo "<p>Sprzedawca: " . $row['sellerUsername'] . "</p>";
-				echo "<p>Zakupiono dnia: " . $row['dateOfOrder'] . "</p>";
-				echo "<p>Oplacono: ";
-				if ($row['isPaid'] == true) {
-					echo 'tak';
-				} else {
-					echo 'nie</p>';
-					echo "<p><a href='pay.php?orderId='".$row['OrderId']."'>Oplac teraz.</a></p>";
-				}*/
-			echo "</td>";
 			echo "</tr>";
 		}
 	}

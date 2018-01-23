@@ -49,6 +49,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
 	$username = "";
 	$password = "";
 	$password2 = "";
+	$mail = "";
 	$firstName = "";
 	$lastName = "";
 	$street = "";
@@ -66,6 +67,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
 			$username = $dbconnection->real_escape_string($_POST['username']);
 			$password = $dbconnection->real_escape_string($_POST['password']);
 			$password2 = $dbconnection->real_escape_string($_POST['password2']);
+			$mail = $dbconnection->real_escape_string($_POST['email']);
 			$firstName = $dbconnection->real_escape_string($_POST['firstName']);
 			$lastName = $dbconnection->real_escape_string($_POST['lastName']);
 			$street = $dbconnection->real_escape_string($_POST['street']);
@@ -99,7 +101,7 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
 
 							$hashedPass = md5($passWithSalt);
 
-							$sql4 = "INSERT INTO `user` (`AddressId`, `FirstName`, `LastName`, `Username`, `SaltyPassword`, `Salt`) VALUES ('$addressID', '$firstName', '$lastName', '$username', '$hashedPass', '$salt');";
+							$sql4 = "INSERT INTO `user` (`AddressId`, `FirstName`, `LastName`, `Username`, `Email`, `SaltyPassword`, `Salt`) VALUES ('$addressID', '$firstName', '$lastName', '$username', '$mail', '$hashedPass', '$salt');";
 
 							$result = $dbconnection->query($sql4);
 
@@ -138,7 +140,8 @@ if (isset($_SESSION['user_login_status']) && $_SESSION['user_login_status'] == 1
 		<p><label for="loginInput">Login: </label><input name="username" id="loginInput" type="text" value="<?php echo $username ?>"></p>
 		<p><label for="passwordInput">Haslo: </label><input name="password" id="passwordInput" type="password"></p>
 		<p><label for="password2Input">Powtorz haslo: </label><input name="password2" id="password2Input" type="password"></p>
-		<p><label for="firstNameInput">Imie: </label><input name="firstName" id="firstNameInput" type="text" value="<?php echo $firstName ?>"></p>
+        <p><label for="emailInput">Email: </label><input name="email" id="emailInput" type="text" value="<?php echo $mail ?>"></p>
+        <p><label for="firstNameInput">Imie: </label><input name="firstName" id="firstNameInput" type="text" value="<?php echo $firstName ?>"></p>
 		<p><label for="lastNameInput">Nazwisko: </label><input name="lastName" id="lastNameInput" type="text" value="<?php echo $lastName ?>"></p>
 		<p><label for="streetInput">Ulica: </label><input name="street" id="streetInput" type="text" value="<?php echo $street ?>"></p>
 		<p><label for="numberInput">Numer: </label><input name="number" id="numberInput" type="text" value="<?php echo $number ?>"></p>

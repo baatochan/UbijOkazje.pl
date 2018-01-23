@@ -23,7 +23,7 @@ table {
 .boughtProductName {
     padding: 10px;
     border-right: none;
-    width: 400px;
+    width: 300px;
     font-weight: bold;
     font-size: 20px;
 }
@@ -38,4 +38,9 @@ table {
 .boughtProductSellerDetails {
     padding: 10px;
     width: 250px;
+}
+
+.buyerInfo {
+    padding: 10px;
+    width: 200px;
 }
